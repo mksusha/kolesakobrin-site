@@ -1,4 +1,5 @@
-import {supabase} from '@/lib/supabaseClient';
+import { NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabaseClient';
 
 export async function POST(req: Request) {
     try {
@@ -44,7 +45,7 @@ export async function POST(req: Request) {
 
 
         if (!name || !email || !phone || !quantity) {
-            return new Response(JSON.stringify({message: 'Заполните все обязательные поля'}), {status: 400});
+                        return new Response(JSON.stringify({ message: 'Заполните все обязательные поля' }), { status: 400 });
         }
 
         let insertData: any = {
@@ -79,14 +80,15 @@ export async function POST(req: Request) {
         }
 
 
-        const {error} = await supabase.from('orders').insert([insertData]);
+
+        const { error } = await supabase.from('orders').insert([insertData]);
 
         if (error) {
-            throw error;
+                        throw error;
         }
 
-        return new Response(JSON.stringify({message: 'Заказ успешно отправлен'}), {status: 200});
+        return new Response(JSON.stringify({ message: 'Заказ успешно отправлен' }), { status: 200 });
     } catch (error) {
-        return new Response(JSON.stringify({message: 'Ошибка при сохранении заказа'}), {status: 500});
+                return new Response(JSON.stringify({ message: 'Ошибка при сохранении заказа' }), { status: 500 });
     }
 }

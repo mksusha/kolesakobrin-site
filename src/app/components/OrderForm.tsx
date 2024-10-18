@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import Modal from './Modal';
 
 interface Tire {
@@ -19,7 +19,7 @@ interface OrderFormProps {
     onClose: () => void;
 }
 
-const OrderForm = ({tire, onClose}: OrderFormProps) => {
+const OrderForm = ({ tire, onClose }: OrderFormProps) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -32,7 +32,7 @@ const OrderForm = ({tire, onClose}: OrderFormProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -63,14 +63,14 @@ const OrderForm = ({tire, onClose}: OrderFormProps) => {
                 alert('Произошла ошибка при отправке заказа.');
             }
         } catch (error) {
-            alert('Произошла ошибка при отправке заказа.');
+                        alert('Произошла ошибка при отправке заказа.');
         } finally {
             setIsSubmitting(false);
         }
     };
 
     return (
-        <Modal title="Заказ шины" onClose={onClose}>
+        <Modal title="Заказ шины"  onClose={onClose}>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="text-center a"> {}
                     <h2 className="text-xl font-semibold mb-2">Информация о шине:</h2>

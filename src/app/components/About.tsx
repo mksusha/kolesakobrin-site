@@ -1,5 +1,4 @@
-import {Award, CheckCircle, Globe} from 'lucide-react';
-
+import { CheckCircle, Award, Globe } from 'lucide-react';
 const AboutUsSection = () => {
     return (
         <section className="mt-16 py-16 bg-blue-50 w-full">
@@ -7,9 +6,7 @@ const AboutUsSection = () => {
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-900 mb-6">О нас</h2>
                     <p className="text-lg text-gray-700 max-w-[800px] mx-auto leading-relaxed">
-                        Интернет-магазин «Все шины» предлагает клиентам большой ассортимент качественных шин и дисков от
-                        ведущих мировых производителей. Мы стремимся предоставлять только проверенные и надежные товары
-                        для всех типов автомобилей.
+                        Интернет-магазин «Все шины» предлагает клиентам большой ассортимент качественных шин и дисков от ведущих мировых производителей. Мы стремимся предоставлять только проверенные и надежные товары для всех типов автомобилей.
                     </p>
                 </div>
 
@@ -40,8 +37,7 @@ const AboutUsSection = () => {
 
                 <div className="text-center mt-12">
                     <a
-                        href="/about"
-                        className="inline-block bg-blue-500 text-white py-3 px-8 rounded-full text-lg hover:bg-blue-600 transition duration-300"
+                        href="/about"                          className="inline-block bg-blue-500 text-white py-3 px-8 rounded-full text-lg hover:bg-blue-600 transition duration-300"
                     >
                         Узнать больше
                     </a>

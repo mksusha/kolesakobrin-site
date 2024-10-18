@@ -1,11 +1,10 @@
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
-import {Award, CheckCircle, Globe, ThumbsUp} from 'lucide-react';
-
+import {CheckCircle, Award, Globe, ThumbsUp} from 'lucide-react';
 export default function AboutUs() {
     return (
         <div>
-            <Header/>
+            <Header />
             <main className="bg-blue-50 py-16">
                 <div className="container mx-auto max-w-screen-lg px-4">
                     <h1 className="text-center text-4xl font-bold mb-12 text-gray-900">О нас</h1>

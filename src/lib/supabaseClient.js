@@ -1,4 +1,5 @@
-import {createClient} from '@supabase/supabase-js';
+
+import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -7,9 +8,10 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 
+
 async function addProduct(product) {
-    const {data, error} = await supabase
-        .from('tires').insert([
+    const { data, error } = await supabase
+        .from('tires')          .insert([
             {
                 name: product.name,
                 manufacturer: product.manufacturer,
@@ -26,7 +28,7 @@ async function addProduct(product) {
         ]);
 
     if (error) {
-    } else {
-    }
+            } else {
+            }
 }
 

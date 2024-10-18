@@ -1,16 +1,16 @@
 'use client';
 
-import {useEffect, useState} from 'react';
-import {useRouter} from 'next/navigation';
-import {supabase} from '@/lib/supabaseClient';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabaseClient';
 import Header from '@/app/components/Header';
 import TireCard from '@/app/tires/TireCard';
 import Footer from '@/app/components/Footer';
 import ReactPaginate from 'react-paginate';
-import {ChevronLeft, ChevronRight} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Filters from '@/app/components/Filters';
 
-const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
+const TiresPage = ({ searchParams }: { searchParams: { page?: string } }) => {
     const router = useRouter();
     const [tires, setTires] = useState<any[]>([]);
     const [totalPages, setTotalPages] = useState(1);
@@ -18,12 +18,7 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
     const [loading, setLoading] = useState(true);
     const [noResults, setNoResults] = useState(false);
 
-    const [filters, setFilters] = useState<{
-        width: string | null,
-        height: string | null,
-        season: string | null,
-        manufacturer: string | null,
-    }>({
+    const [filters, setFilters] = useState<{ width: string | null, height: string | null, season: string | null, manufacturer: string | null, }>({
         width: null,
         height: null,
         season: null,
@@ -36,7 +31,7 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
     const [pageRangeDisplayed, setPageRangeDisplayed] = useState(5);
     const [marginPagesDisplayed, setMarginPagesDisplayed] = useState(2);
 
-    useEffect(() => {
+        useEffect(() => {
         const handleResize = () => {
             const screenWidth = window.innerWidth;
             if (screenWidth <= 480) {
@@ -51,7 +46,7 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
             }
         };
 
-        handleResize();
+                handleResize();
         window.addEventListener('resize', handleResize);
 
         return () => {
@@ -62,7 +57,7 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
     const fetchTires = async (updatedFilters = filters, page = currentPage) => {
         setLoading(true);
 
-        let query = supabase.from('tires').select('*', {count: 'exact'});
+        let query = supabase.from('tires').select('*', { count: 'exact' });
 
         if (updatedFilters.width) {
             query = query.eq('width', updatedFilters.width);
@@ -77,10 +72,10 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
             query = query.eq('manufacturer', updatedFilters.manufacturer);
         }
 
-        const {count: totalCount, data: tiresData, error: tiresError} = await query;
+        const { count: totalCount, data: tiresData, error: tiresError } = await query;
 
         if (tiresError) {
-            setLoading(false);
+                        setLoading(false);
             return;
         }
 
@@ -90,10 +85,10 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
         setTotalPages(totalAvailablePages);
 
         const offset = (page - 1) * limit;
-        const {data: paginatedTiresData, error: paginatedTiresError} = await query.range(offset, offset + limit - 1);
+        const { data: paginatedTiresData, error: paginatedTiresError } = await query.range(offset, offset + limit - 1);
 
         if (paginatedTiresError) {
-            setLoading(false);
+                        setLoading(false);
             return;
         }
 
@@ -107,13 +102,8 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
         fetchTires(filters, currentPage);
     }, [currentPage]);
 
-    const handleFilterChange = (newFilters: {
-        width: string | null,
-        height: string | null,
-        season: string | null,
-        manufacturer: string | null,
-    }) => {
-        const updatedFilters = {...filters, ...newFilters};
+    const handleFilterChange = (newFilters: { width: string | null, height: string | null, season: string | null, manufacturer: string | null, }) => {
+        const updatedFilters = { ...filters, ...newFilters };
         setFilters(updatedFilters);
         setTires([]);
         router.push(`/tires?page=1`);
@@ -129,40 +119,37 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
 
     return (
         <main className="min-h-screen bg-white">
-            <Header/>
+            <Header />
             <section className="py-10 bg-blue-50">
                 <div className="container max-w-[1370px] mx-auto text-center py-10">
                     <h1 className="text-5xl font-bold mb-4">Все шины</h1>
-                    <p className="text-lg text-gray-600 mb-8">Интернет-магазин шин. Найдите идеальные шины для вашего
-                        автомобиля, выбрав параметры ниже.</p>
+                    <p className="text-lg text-gray-600 mb-8">Интернет-магазин шин. Найдите идеальные шины для вашего автомобиля, выбрав параметры ниже.</p>
 
-                    <Filters onFilterChange={handleFilterChange}/>
+                    <Filters onFilterChange={handleFilterChange} />
                 </div>
             </section>
 
             <section className="py-20 bg-white">
                 <div className="container max-w-[1370px] mx-auto text-center">
                     <h2 className="text-4xl font-bold mb-4 text-black">Большой ассортимент качественных шин</h2>
-                    <p className="text-lg text-gray-600 mb-8">Мы предлагаем широкий ассортимент шин для любых условий и
-                        автомобилей. Найдите идеальные шины для вашего автомобиля прямо сейчас.</p>
+                    <p className="text-lg text-gray-600 mb-8">Мы предлагаем широкий ассортимент шин для любых условий и автомобилей. Найдите идеальные шины для вашего автомобиля прямо сейчас.</p>
 
                     {loading ? (
                         <p>Загрузка...</p>
                     ) : noResults ? (
-                        <p className="text-gray-500 text-2xl mt-8">Шины по заданным фильтрам не найдены. Попробуйте
-                            изменить фильтры или сбросить их.</p>
+                        <p className="text-gray-500 text-2xl mt-8">Шины по заданным фильтрам не найдены. Попробуйте изменить фильтры или сбросить их.</p>
                     ) : (
                         <>
                             {tires.length > 0 && (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-                                    {tires.map((tire) => <TireCard key={tire.id} tire={tire}/>)}
+                                    {tires.map((tire) => <TireCard key={tire.id} tire={tire} />)}
                                 </div>
                             )}
                             {tires.length > 0 && (
                                 <div className="pagination-container overflow-x-auto">
                                     <ReactPaginate
-                                        previousLabel={<ChevronLeft/>}
-                                        nextLabel={<ChevronRight/>}
+                                        previousLabel={<ChevronLeft />}
+                                        nextLabel={<ChevronRight />}
                                         breakLabel={'...'}
                                         pageCount={totalPages}
                                         marginPagesDisplayed={marginPagesDisplayed}
@@ -178,7 +165,7 @@ const TiresPage = ({searchParams}: { searchParams: { page?: string } }) => {
                     )}
                 </div>
             </section>
-            <Footer/>
+            <Footer />
         </main>
     );
 };

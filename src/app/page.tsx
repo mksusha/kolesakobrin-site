@@ -1,37 +1,37 @@
 import Header from "@/app/components/Header";
 import ProductSection from "@/app/tires/ProductCard";
-import {supabase} from '@/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
+import About from "@/app/components/About";
 import AboutUsSection from "@/app/components/About";
 import Footer from "@/app/components/Footer";
+import RimCard from "@/app/components/RimCard";
 import RimSection from "@/app/components/RimCard";
 
 async function fetchProducts() {
-    const randomProductIds = [44, 1050, 3402, 5121];
-    const {data: products, error} = await supabase
-        .from("tires").select("*")
-        .in("id", randomProductIds);
+    const randomProductIds = [44, 1050, 3402, 5121]; 
+    const { data: products, error } = await supabase
+        .from("tires")         .select("*")
+        .in("id", randomProductIds); 
     if (error) {
-        return [];
+                return [];
     }
 
     return products || [];
 }
-
 async function fetchRims() {
-    const {data: rims, error} = await supabase
+    const { data: rims, error } = await supabase
         .from('rims')
         .select('id, name, manufacturer, image_url, price, width, height, diameter, bolts, depth, color, color_name, model')
-        .limit(4);
+        .limit(4);  
     if (error) {
-        return [];
+                return [];
     }
 
     return rims || [];
 }
 
 export default async function Home() {
-    const products = await fetchProducts();
-    const rims = await fetchRims();
+    const products = await fetchProducts();     const rims = await fetchRims(); 
     return (
         <main className="min-h-screen bg-white">
             {}
