@@ -3,8 +3,8 @@
 import Logo from '@/app/assets/logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import {Menu, Phone, X} from 'lucide-react';
+import {useState} from 'react';
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ export default function Header() {
                 {/* Логотип */}
                 <div className="flex items-center space-x-4">
                     <Link href="/">  {/* Оборачиваем логотип в компонент Link */}
-                        <Image src={Logo} alt="Логотип" width={80} height={80} priority />
+                        <Image src={Logo} alt="Логотип" width={80} height={80} priority/>
                     </Link>
                 </div>
 
@@ -41,7 +41,7 @@ export default function Header() {
 
                 {/* Телефон */}
                 <div className="hidden md:flex items-center space-x-2 text-gray-600">
-                    <Phone className="w-5 h-5 text-blue-500" />
+                    <Phone className="w-5 h-5 text-blue-500"/>
                     <a href="tel:+375297885891" className="text-blue-500 hover:underline">
                         +375 29 788 5891
                     </a>
@@ -50,7 +50,7 @@ export default function Header() {
                 {/* Мобильное меню */}
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="text-gray-600 hover:text-blue-500 focus:outline-none">
-                        {menuOpen ? <X size={28} /> : <Menu size={28} />}
+                        {menuOpen ? <X size={28}/> : <Menu size={28}/>}
                     </button>
                 </div>
             </div>
@@ -71,7 +71,7 @@ export default function Header() {
                         О нас
                     </a>
                     <div className="flex items-center space-x-2 text-gray-600 mt-4">
-                        <Phone className="w-5 h-5 text-blue-500" />
+                        <Phone className="w-5 h-5 text-blue-500"/>
                         <a href="tel:+375297885891" className="text-blue-500 hover:underline">
                             +375 29 788 5891
                         </a>

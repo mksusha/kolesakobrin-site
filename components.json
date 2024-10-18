@@ -1,5 +1,9 @@
 {
-  "$schema": "https:  "style": "new-york",
+  "$schema": "https:  "
+  style
+  ": "
+  new-york
+  ",
   "rsc": true,
   "tsx": true,
   "tailwind": {

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Snowflake, Sun, SunSnow } from "lucide-react";
+import {Snowflake, Sun, SunSnow} from "lucide-react";
 import OrderForm from '../components/OrderForm';
 
 interface Tire {
@@ -17,7 +17,7 @@ interface Tire {
     radius?: number;
 }
 
-const TireCard = ({ tire }: { tire: Tire }) => {
+const TireCard = ({tire}: { tire: Tire }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dimensions = tire.width && tire.height ?
@@ -36,7 +36,8 @@ const TireCard = ({ tire }: { tire: Tire }) => {
 
     return (
         <>
-            <div className="relative border rounded-lg shadow-md bg-white rounded-xl cursor-pointer hover:shadow-lg transition duration-300 flex flex-col justify-between h-full p-4 w-full">
+            <div
+                className="relative border rounded-lg shadow-md bg-white rounded-xl cursor-pointer hover:shadow-lg transition duration-300 flex flex-col justify-between h-full p-4 w-full">
                 <Link href={`/tires/${tire.id}`} className="block">
                     <div>
                         <div className="absolute top-3 left-3">

@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 interface FiltersProps {
-    onFilterChange: (filters: { width: string | null, height: string | null, season: string | null, manufacturer: string | null }) => void;
+    onFilterChange: (filters: {
+        width: string | null,
+        height: string | null,
+        season: string | null,
+        manufacturer: string | null
+    }) => void;
 }
 
-const Filters = ({ onFilterChange }: FiltersProps) => {
+const Filters = ({onFilterChange}: FiltersProps) => {
     const [width, setWidth] = useState<string | null>(null);
     const [height, setHeight] = useState<string | null>(null);
     const [season, setSeason] = useState<string | null>(null);
     const [manufacturer, setManufacturer] = useState<string | null>(null);
 
-        const handleApplyFilters = () => {
-            };
+    const handleApplyFilters = () => {
+    };
 
     return (
         <div className="bg-white p-6 rounded-2xl shadow-lg mb-8">

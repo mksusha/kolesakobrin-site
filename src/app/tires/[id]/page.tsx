@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import {useEffect, useState} from 'react';
+import {useParams} from 'next/navigation';
+import {supabase} from '@/lib/supabaseClient';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import OrderForm from '@/app/components/OrderForm';
 import TireCard from "@/app/tires/TireCard";
 
 const TireDetails = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const [tire, setTire] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [similarTires, setSimilarTires] = useState<any[]>([]);
@@ -18,14 +18,14 @@ const TireDetails = () => {
 
     useEffect(() => {
         const fetchTireDetails = async () => {
-            const { data, error } = await supabase
+            const {data, error} = await supabase
                 .from('tires')
                 .select('*')
                 .eq('id', id)
                 .single();
 
             if (error) {
-                            } else {
+            } else {
                 setTire(data);
             }
 
@@ -33,13 +33,13 @@ const TireDetails = () => {
         };
 
         const fetchSimilarTires = async () => {
-            const { data: tires, error } = await supabase
+            const {data: tires, error} = await supabase
                 .from('tires')
                 .select('*')
                 .neq('id', id)
                 .limit(4);
             if (error) {
-                            } else {
+            } else {
                 setSimilarTires(tires || []);
             }
         };
@@ -68,10 +68,11 @@ const TireDetails = () => {
 
     return (
         <div>
-            <Header />
+            <Header/>
             <main className="w-full bg-blue-50 py-16">
                 <div className="container mx-auto">
-                    <div className="bg-white p-10 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-center">
+                    <div
+                        className="bg-white p-10 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-center">
                         <div className="w-64 h-64 mb-6 md:mb-0 md:mr-8 flex-shrink-0">
                             <img
                                 src={tire.image_url}
@@ -133,33 +134,32 @@ const TireDetails = () => {
                 <div
                     className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50"
                     onClick={e => e.currentTarget === e.target && closeModal()}
-                    style={{ height: '100vh', width: '100vw' }}
+                    style={{height: '100vh', width: '100vw'}}
                 >
                     <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg relative z-60">
                         <button className="absolute top-2 right-2 text-gray-500" onClick={closeModal}>
                             ✕
                         </button>
                         <h2 className="text-2xl font-bold mb-4">Оформить заказ</h2>
-                        <OrderForm tire={tire} onClose={closeModal} />
+                        <OrderForm tire={tire} onClose={closeModal}/>
                     </div>
                 </div>
             )}
 
 
-
-{}
+            {}
             <section className="mt-12 bg-white py-10">
                 <div className="container mx-auto">
                     <h2 className="text-3xl font-bold mb-6 text-gray-900">Другие шины</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                         {similarTires.map((tire) => (
-                            <TireCard key={tire.id} tire={tire} />
+                            <TireCard key={tire.id} tire={tire}/>
                         ))}
                     </div>
                 </div>
             </section>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 };

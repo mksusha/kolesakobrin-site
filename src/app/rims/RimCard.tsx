@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Modal from '@/app/components/Modal';
 import OrderFormRim from '@/app/components/OrderFormRim';
+
 export interface Rim {
     id: number;
     name: string;
@@ -18,7 +19,8 @@ export interface Rim {
     model?: string;
     size?: string;
     color_name?: string;
-    diameter?: number;      quantity?: number;
+    diameter?: number;
+    quantity?: number;
     bolt_pattern?: string;
     et?: string;
     hub_diameter?: string;
@@ -28,9 +30,9 @@ interface RimCardProps {
     rim: Rim;
 }
 
-const RimCard = ({ rim }: RimCardProps) => {
+const RimCard = ({rim}: RimCardProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalType, setModalType] = useState<'order' | 'notify' | null>(null); 
+    const [modalType, setModalType] = useState<'order' | 'notify' | null>(null);
     const formattedPrice = rim.price !== undefined
         ? `${rim.price} BYN`
         : 'Нет в наличии';
@@ -48,12 +50,14 @@ const RimCard = ({ rim }: RimCardProps) => {
         : 'bg-transparent';
 
     const handleOrderClick = (e: React.MouseEvent) => {
-        e.stopPropagation();         setModalType('order');
+        e.stopPropagation();
+        setModalType('order');
         setIsModalOpen(true);
     };
 
     const handleNotifyClick = (e: React.MouseEvent) => {
-        e.stopPropagation();         setModalType('notify');
+        e.stopPropagation();
+        setModalType('notify');
         setIsModalOpen(true);
     };
 
@@ -63,7 +67,8 @@ const RimCard = ({ rim }: RimCardProps) => {
     };
 
     return (
-        <div className="relative border rounded-lg shadow-md bg-white cursor-pointer hover:shadow-lg transition duration-300 flex flex-col justify-between h-full p-4 w-full">
+        <div
+            className="relative border rounded-lg shadow-md bg-white cursor-pointer hover:shadow-lg transition duration-300 flex flex-col justify-between h-full p-4 w-full">
             {}
             <Link href={`/rims/${rim.id}`} className="block">
                 <div>
@@ -89,7 +94,7 @@ const RimCard = ({ rim }: RimCardProps) => {
                         <p className="text-gray-600 mt-1">Модель: {rim.model || 'Не указано'}</p>
 
                         <div className="flex items-center justify-center mt-1">
-                            <div className={`w-4 h-4 rounded-sm mr-2 ${colorClass}`} />
+                            <div className={`w-4 h-4 rounded-sm mr-2 ${colorClass}`}/>
                             <p className="text-gray-600">{rim.color_name || 'Не указано'}</p>
                         </div>
                         <p className="text-gray-600 mt-2">Размер: {rim.width}x{rim.height}</p>

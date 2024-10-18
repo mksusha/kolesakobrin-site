@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import {useState} from 'react';
+import {useRouter} from 'next/navigation';
+
 const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -10,9 +11,10 @@ const AdminLogin = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-                if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-                        localStorage.setItem('isAdmin', 'true');
-            router.push('/admin/orders');         } else {
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            localStorage.setItem('isAdmin', 'true');
+            router.push('/admin/orders');
+        } else {
             setError('Неправильный email или пароль.');
         }
     };

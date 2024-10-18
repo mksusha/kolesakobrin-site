@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import Modal from './Modal';
 
 export interface Rim {
@@ -7,11 +7,13 @@ export interface Rim {
     manufacturer: string;
     image_url: string;
     width?: number;
-    height?: string;     bolts?: string;
+    height?: string;
+    bolts?: string;
     depth?: string;
     price?: number;
     color?: string;
-    rim_model?: string;     model?: string; 
+    rim_model?: string;
+    model?: string;
     size?: string;
     color_name?: string;
     diameter?: number;
@@ -24,7 +26,7 @@ interface OrderFormProps {
     onClose: () => void;
 }
 
-const OrderFormRim = ({ rim, onClose }: OrderFormProps) => {
+const OrderFormRim = ({rim, onClose}: OrderFormProps) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -37,7 +39,7 @@ const OrderFormRim = ({ rim, onClose }: OrderFormProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
@@ -48,7 +50,8 @@ const OrderFormRim = ({ rim, onClose }: OrderFormProps) => {
         e.preventDefault();
         setIsSubmitting(true);
 
-                const rimModel = rim.rim_model || rim.model;         const rimPrice = rim.price || 0;
+        const rimModel = rim.rim_model || rim.model;
+        const rimPrice = rim.price || 0;
         const rimSize = rim.width && rim.height && rim.diameter ? `${rim.width}x${rim.height}, ${rim.diameter}` : 'Не указано';
         const rimName = rim.name || 'Не указано';
         const hubDiameter = rim.hub_diameter || 'Не указано';
@@ -68,15 +71,15 @@ const OrderFormRim = ({ rim, onClose }: OrderFormProps) => {
                 }),
             });
 
-                                    const data = await response.json();
-            
+            const data = await response.json();
+
             if (response.ok) {
                 alert('Ваш заказ успешно отправлен!');
             } else {
-                                alert(`Произошла ошибка при отправке заказа: ${data.message || 'неизвестная ошибка'}`);
+                alert(`Произошла ошибка при отправке заказа: ${data.message || 'неизвестная ошибка'}`);
             }
         } catch (error) {
-                        alert('Произошла ошибка при отправке заказа.');
+            alert('Произошла ошибка при отправке заказа.');
         } finally {
             setIsSubmitting(false);
         }

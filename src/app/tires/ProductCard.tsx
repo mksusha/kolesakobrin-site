@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Snowflake, Sun, SunSnow } from "lucide-react";
+import {Snowflake, Sun, SunSnow} from "lucide-react";
 import OrderForm from '../components/OrderForm';
-import { supabase } from '@/lib/supabaseClient';
+import {supabase} from '@/lib/supabaseClient';
 import {useState} from "react";
+
 export interface Tire {
     id: number;
     name: string;
@@ -19,7 +20,7 @@ export interface Tire {
     radius?: number;
 }
 
-const ProductCard = ({ tire }: { tire: Tire }) => {
+const ProductCard = ({tire}: { tire: Tire }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const dimensions = tire.width && tire.height ?
@@ -38,7 +39,8 @@ const ProductCard = ({ tire }: { tire: Tire }) => {
 
     return (
         <>
-            <div className="relative border rounded-lg shadow-md bg-white rounded-xl cursor-pointer hover:shadow-lg transition duration-300 flex flex-col justify-between h-full p-4 w-full">
+            <div
+                className="relative border rounded-lg shadow-md bg-white rounded-xl cursor-pointer hover:shadow-lg transition duration-300 flex flex-col justify-between h-full p-4 w-full">
                 <Link href={`/tires/${tire.id}`} className="block">
                     <div>
                         <div className="absolute top-3 left-3">
@@ -106,19 +108,22 @@ const ProductCard = ({ tire }: { tire: Tire }) => {
 };
 
 export async function getServerSideProps() {
-        const { data: products, error } = await supabase
+    const {data: products, error} = await supabase
         .from('tires')
         .select('id, name, manufacturer, image_url, price, quantity, width, height, radius');
 
-        if (error) {
-                return { props: { products: [] } };     }
+    if (error) {
+        return {props: {products: []}};
+    }
 
-        return {
+    return {
         props: {
-            products: products || [],         },
+            products: products || [],
+        },
     };
 }
-const ProductSection = ({ products }: { products: Tire[] }) => {
+
+const ProductSection = ({products}: { products: Tire[] }) => {
     return (
         <section className="my-12">
             <div className="container max-w-[1370px] mx-auto">
@@ -126,7 +131,9 @@ const ProductSection = ({ products }: { products: Tire[] }) => {
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-bold text-gray-900 mb-4">Наш ассортимент шин</h2>
                     <p className="text-lg text-gray-700 max-w-[800px] mx-auto leading-relaxed">
-                        Мы предлагаем широкий выбор шин для различных автомобилей. От зимних и летних шин до всесезонных — вы найдете подходящий вариант для любых условий вождения. Наши шины гарантируют качество и долговечность.
+                        Мы предлагаем широкий выбор шин для различных автомобилей. От зимних и летних шин до всесезонных
+                        — вы найдете подходящий вариант для любых условий вождения. Наши шины гарантируют качество и
+                        долговечность.
                     </p>
                 </div>
 
@@ -134,7 +141,7 @@ const ProductSection = ({ products }: { products: Tire[] }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-12">
                     {products.length > 0 ? (
                         products.map((product, index) => (
-                            <ProductCard key={index} tire={product} />
+                            <ProductCard key={index} tire={product}/>
                         ))
                     ) : (
                         <p className="text-gray-700 text-lg text-center col-span-full">
@@ -146,7 +153,8 @@ const ProductSection = ({ products }: { products: Tire[] }) => {
                 {}
                 <div className="text-center">
                     <a
-                        href="/tires"                          className="inline-block bg-transparent border border-blue-500 text-blue-500 py-3 px-8 rounded-full text-lg hover:bg-blue-500 hover:text-white transition duration-300"
+                        href="/tires"
+                        className="inline-block bg-transparent border border-blue-500 text-blue-500 py-3 px-8 rounded-full text-lg hover:bg-blue-500 hover:text-white transition duration-300"
                     >
                         Посмотреть все шины
                     </a>

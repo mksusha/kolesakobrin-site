@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import {useEffect, useState} from 'react';
+import {useParams} from 'next/navigation';
+import {supabase} from '@/lib/supabaseClient';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import OrderFormRim from '@/app/components/OrderFormRim';
 import RimCard from "@/app/rims/RimCard";
 
 const RimDetails = () => {
-    const { id } = useParams();
+    const {id} = useParams();
     const [rim, setRim] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [similarRims, setSimilarRims] = useState<any[]>([]);
@@ -19,14 +19,14 @@ const RimDetails = () => {
 
     useEffect(() => {
         const fetchRimDetails = async () => {
-            const { data, error } = await supabase
+            const {data, error} = await supabase
                 .from('rims')
                 .select('*')
                 .eq('id', id)
                 .single();
 
             if (error) {
-                            } else {
+            } else {
                 setRim(data);
             }
 
@@ -34,13 +34,13 @@ const RimDetails = () => {
         };
 
         const fetchSimilarRims = async () => {
-            const { data: rims, error } = await supabase
+            const {data: rims, error} = await supabase
                 .from('rims')
                 .select('*')
                 .neq('id', id)
                 .limit(4);
             if (error) {
-                            } else {
+            } else {
                 setSimilarRims(rims || []);
             }
         };
@@ -76,10 +76,11 @@ const RimDetails = () => {
 
     return (
         <div>
-            <Header />
+            <Header/>
             <main className="w-full bg-blue-50 py-16">
                 <div className="container mx-auto">
-                    <div className="bg-white p-10 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-center">
+                    <div
+                        className="bg-white p-10 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-center">
                         <div className="w-64 h-64 mb-6 md:mb-0 md:mr-8 flex-shrink-0">
                             <img
                                 src={rim.image_url}
@@ -155,7 +156,7 @@ const RimDetails = () => {
                 <div
                     className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50"
                     onClick={e => e.currentTarget === e.target && handleCloseModal()}
-                    style={{ height: '100vh', width: '100vw' }}
+                    style={{height: '100vh', width: '100vw'}}
                 >
                     <div className="bg-white p-8 rounded-lg shadow-lg max-w-lg relative z-60">
                         <button className="absolute top-2 right-2 text-gray-500" onClick={handleCloseModal}>
@@ -178,7 +179,7 @@ const RimDetails = () => {
             )}
 
 
-{}
+            {}
             <section className="mt-12 bg-white py-10">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8"> {}
                     <h2 className="text-3xl font-bold mb-6 text-gray-900 text-center">Другие диски</h2>
@@ -192,7 +193,6 @@ const RimDetails = () => {
             </section>
 
             <Footer/>
-
 
 
         </div>

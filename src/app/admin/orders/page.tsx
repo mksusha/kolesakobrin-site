@@ -1,6 +1,7 @@
-'use client';  
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';  import { supabase } from '@/lib/supabaseClient';
+'use client';
+import {useEffect, useState} from 'react';
+import {useRouter} from 'next/navigation';
+import {supabase} from '@/lib/supabaseClient';
 
 interface Order {
     id: number;
@@ -54,17 +55,17 @@ const OrdersPage = () => {
             query = query.eq('order_type', 'rim');
         }
 
-        const { data, error } = await query;
+        const {data, error} = await query;
         if (error) {
-                    } else {
+        } else {
             setOrders(data || []);
         }
     };
 
     const toggleProcessed = async (id: number, currentStatus: boolean) => {
-        const { error } = await supabase
+        const {error} = await supabase
             .from('orders')
-            .update({ is_processed: !currentStatus })
+            .update({is_processed: !currentStatus})
             .eq('id', id);
 
         if (!error) {

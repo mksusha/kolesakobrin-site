@@ -1,19 +1,27 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 interface FiltersProps {
-    onFilterChange: (filters: { height: string | null, color: string | null, manufacturer: string | null, diameter: string | null, color_name: string | null,name: string | null,  }) => void;
+    onFilterChange: (filters: {
+        height: string | null,
+        color: string | null,
+        manufacturer: string | null,
+        diameter: string | null,
+        color_name: string | null,
+        name: string | null,
+    }) => void;
 }
 
-const RimFilters = ({ onFilterChange }: FiltersProps) => {
+const RimFilters = ({onFilterChange}: FiltersProps) => {
     const [height, setHeight] = useState<string | null>(null);
     const [color, setColor] = useState<string | null>(null);
     const [manufacturer, setManufacturer] = useState<string | null>(null);
-    const [diameter, setDiameter] = useState<string | null>(null);     const [color_name, setColorName] = useState<string | null>(null);
+    const [diameter, setDiameter] = useState<string | null>(null);
+    const [color_name, setColorName] = useState<string | null>(null);
     const [name, setName] = useState<string | null>(null);
 
 
     const handleApplyFilters = () => {
-            };
+    };
 
 
     return (
