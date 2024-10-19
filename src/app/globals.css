@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "normalize.css";
 
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
@@ -148,24 +147,32 @@ header img {
 }
 select {
   appearance: none; /* Убираем стандартное оформление браузера */
-  -webkit-appearance: none; /* Убираем стандартное оформление в Safari */
+  -webkit-appearance: none; /* Для Safari */
   -moz-appearance: none; /* Для Firefox */
 
-  padding: 10px; /* Отступы внутри select */
-  border: 1px solid #ccc; /* Светлая рамка */
-  border-radius: 5px; /* Округлые углы */
-  background-color: #fff; /* Белый фон */
+  padding: 12px 15px; /* Увеличиваем отступы */
+  border: 1px solid #ddd; /* Светлая рамка */
+  border-radius: 8px; /* Округлые углы */
+  background-color: #f9f9f9; /* Светлый фон */
   font-size: 16px; /* Размер шрифта */
   color: #333; /* Цвет текста */
   width: 100%; /* Занимает всю доступную ширину */
-  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="black" stroke-width=".5" d="M2 0 L0 2 L4 2 Z"/></svg>'); /* Добавляем стрелку вниз */
+
+  /* Иконка из Lucide */
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"%3E%3Cpolyline points="6 9 12 15 18 9"%3E%3C/polyline%3E%3C/svg%3E');
   background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
+  background-position: right 15px center; /* Расположение стрелки */
+  background-size: 16px;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Плавный переход при наведении и фокусе */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
 }
+
+
 
 select:focus {
   outline: none; /* Убираем стандартный outline при фокусе */
-  border-color: #007BFF; /* Цвет рамки при фокусе */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Эффект тени при фокусе */
+  border-color:  #007bff; /* Цвет рамки при фокусе */
+  box-shadow: 0 0 8px rgba(0, 102, 204, 0.5); /* Тень при фокусе */
 }
+
