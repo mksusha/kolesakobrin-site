@@ -145,3 +145,10 @@ header img {
   width: 200px;
 
 }
+form {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
