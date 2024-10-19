@@ -146,3 +146,26 @@ header img {
   width: 200px;
 
 }
+select {
+  appearance: none; /* Убираем стандартное оформление браузера */
+  -webkit-appearance: none; /* Убираем стандартное оформление в Safari */
+  -moz-appearance: none; /* Для Firefox */
+
+  padding: 10px; /* Отступы внутри select */
+  border: 1px solid #ccc; /* Светлая рамка */
+  border-radius: 5px; /* Округлые углы */
+  background-color: #fff; /* Белый фон */
+  font-size: 16px; /* Размер шрифта */
+  color: #333; /* Цвет текста */
+  width: 100%; /* Занимает всю доступную ширину */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="none" stroke="black" stroke-width=".5" d="M2 0 L0 2 L4 2 Z"/></svg>'); /* Добавляем стрелку вниз */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+select:focus {
+  outline: none; /* Убираем стандартный outline при фокусе */
+  border-color: #007BFF; /* Цвет рамки при фокусе */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Эффект тени при фокусе */
+}
