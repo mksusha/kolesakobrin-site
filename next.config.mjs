@@ -1,7 +1,6 @@
 const nextConfig = {
     images: {
         remotePatterns: [
-
             {
                 protocol: 'https',
                 hostname: 'bagoria.by',
@@ -10,6 +9,10 @@ const nextConfig = {
             },
         ],
     },
+    env: {
+        ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+        ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+    },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
