@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
 'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';  import { supabase } from '@/lib/supabaseClient';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabaseClient';
 
 interface Order {
     id: number;
@@ -28,19 +27,24 @@ const OrdersPage = () => {
     const [filterProcessed, setFilterProcessed] = useState<'all' | 'processed' | 'unprocessed'>('all');
     const [filterType, setFilterType] = useState<'all' | 'tire' | 'rim'>('all');
     const router = useRouter();
+    const [isClient, setIsClient] = useState(false); // Флаг для проверки клиентской части
 
     useEffect(() => {
-        const isAdmin = localStorage.getItem('isAdmin');
-        if (!isAdmin || isAdmin !== 'true') {
-            router.push('/admin/login');
+        // Эта проверка всегда срабатывает при рендере
+        if (typeof window !== 'undefined') {
+            setIsClient(true); // Мы на клиенте
+            const isAdmin = localStorage.getItem('isAdmin');
+            if (!isAdmin || isAdmin !== 'true') {
+                router.push('/admin/login');
+            }
         }
     }, [router]);
 
-    if (!localStorage.getItem('isAdmin')) return null;
-
     useEffect(() => {
-        fetchOrders();
-    }, [filterProcessed, filterType]);
+        if (isClient) {
+            fetchOrders();
+        }
+    }, [filterProcessed, filterType, isClient]);
 
     const fetchOrders = async () => {
         let query = supabase.from('orders').select('*');
@@ -75,6 +79,10 @@ const OrdersPage = () => {
         }
     };
 
+    if (!isClient) {
+        return null; // Пока не определили, что мы на клиенте, ничего не рендерим
+    }
+
     return (
         <div className="p-6">
             <h1 className="text-3xl font-bold mb-6">Заказы</h1>
@@ -105,7 +113,6 @@ const OrdersPage = () => {
                 </select>
             </div>
 
-            {}
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border">
                     <thead>
