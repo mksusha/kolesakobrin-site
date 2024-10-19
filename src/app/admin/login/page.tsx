@@ -10,9 +10,12 @@ const AdminLogin = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-                if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-                        localStorage.setItem('isAdmin', 'true');
-            router.push('/admin/orders');         } else {
+        // Простая проверка email и пароля
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            // Устанавливаем сессию
+            localStorage.setItem('isAdmin', 'true');
+            router.push('/admin/orders'); // Переход к админ-панели
+        } else {
             setError('Неправильный email или пароль.');
         }
     };
