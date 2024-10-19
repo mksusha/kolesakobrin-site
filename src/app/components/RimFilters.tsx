@@ -4,7 +4,7 @@ interface FiltersProps {
     onFilterChange: (filters: { height: string | null, color: string | null, manufacturer: string | null, diameter: string | null, color_name: string | null,name: string | null,  }) => void;
 }
 
-const RimFilters = ({ onFilterChange }: FiltersProps) => {
+const RimFilters = ({ }: FiltersProps) => {
     const [height, setHeight] = useState<string | null>(null);
     const [color, setColor] = useState<string | null>(null);
     const [manufacturer, setManufacturer] = useState<string | null>(null);

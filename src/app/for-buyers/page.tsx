@@ -1,4 +1,4 @@
-import Link from 'next/link';
+
 import { Truck, ShieldCheck, PhoneCall } from 'lucide-react';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
@@ -13,9 +13,9 @@ export default function ForBuyers() {
                     <section className="mb-24 text-center">
                         <div className="bg-white p-10 rounded-xl shadow-lg">
                             <div className="flex justify-center items-center gap-4 mb-6">
-                                {/* Задаем фиксированные размеры для SVG */}
+
                                 <Truck className="text-blue-600" size={40} />
-                                {/* Используем медиазапросы для заголовков */}
+
                                 <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">Условия доставки</h2>
                             </div>
                             <p className="text-lg text-gray-700 mb-6">
@@ -33,7 +33,7 @@ export default function ForBuyers() {
                     <section className="mb-24 text-center">
                         <div className="bg-white p-10 rounded-xl shadow-lg">
                             <div className="flex justify-center items-center gap-4 mb-6">
-                                {/* Задаем фиксированные размеры для SVG */}
+
                                 <ShieldCheck className="text-blue-600" size={40} />
                                 <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">Гарантия</h2>
                             </div>
@@ -59,7 +59,7 @@ export default function ForBuyers() {
                     <section className="text-center">
                         <div className="bg-white p-10 rounded-xl shadow-lg">
                             <div className="flex justify-center items-center gap-4 mb-6">
-                                {/* Задаем фиксированные размеры для SVG */}
+
                                 <PhoneCall className="text-blue-600" size={40} />
                                 <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900">Свяжитесь с нами</h2>
                             </div>

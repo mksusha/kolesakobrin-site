@@ -4,7 +4,7 @@ interface FiltersProps {
     onFilterChange: (filters: { width: string | null, height: string | null, season: string | null, manufacturer: string | null }) => void;
 }
 
-const Filters = ({ onFilterChange }: FiltersProps) => {
+const Filters = ({ }: FiltersProps) => {
     const [width, setWidth] = useState<string | null>(null);
     const [height, setHeight] = useState<string | null>(null);
     const [season, setSeason] = useState<string | null>(null);

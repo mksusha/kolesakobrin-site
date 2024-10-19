@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';  import { supabase } from '@/lib/supabaseClient';
+import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabaseClient';
 
 interface Order {
     id: number;
@@ -25,20 +26,23 @@ const OrdersPage = () => {
     const [orders, setOrders] = useState<Order[]>([]);
     const [filterProcessed, setFilterProcessed] = useState<'all' | 'processed' | 'unprocessed'>('all');
     const [filterType, setFilterType] = useState<'all' | 'tire' | 'rim'>('all');
+    const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
     const router = useRouter();
 
     useEffect(() => {
-        const isAdmin = localStorage.getItem('isAdmin');
-        if (!isAdmin || isAdmin !== 'true') {
+        const adminStatus = localStorage.getItem('isAdmin');
+        if (!adminStatus || adminStatus !== 'true') {
             router.push('/admin/login');
+        } else {
+            setIsAdmin(true);
         }
     }, [router]);
 
-    if (!localStorage.getItem('isAdmin')) return null;
-
     useEffect(() => {
-        fetchOrders();
-    }, [filterProcessed, filterType]);
+        if (isAdmin) {
+            fetchOrders();
+        }
+    }, [filterProcessed, filterType, isAdmin]);
 
     const fetchOrders = async () => {
         let query = supabase.from('orders').select('*');
@@ -56,7 +60,8 @@ const OrdersPage = () => {
 
         const { data, error } = await query;
         if (error) {
-                    } else {
+            console.error('Ошибка при получении заказов:', error);
+        } else {
             setOrders(data || []);
         }
     };
@@ -71,6 +76,8 @@ const OrdersPage = () => {
             fetchOrders();
         }
     };
+
+    if (isAdmin === null) return null;
 
     return (
         <div className="p-6">
@@ -102,7 +109,6 @@ const OrdersPage = () => {
                 </select>
             </div>
 
-            {}
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border">
                     <thead>

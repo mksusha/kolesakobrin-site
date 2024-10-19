@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/maksi/vse-shiny/src/app/layout":["static/media/2d630f817150ec68-s.p.woff2","static/media/d86358f2b60a0b01-s.p.woff2"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';

@@ -1,10 +1,10 @@
 import Header from "@/app/components/Header";
 import ProductSection from "@/app/tires/ProductCard";
 import { supabase } from '@/lib/supabaseClient';
-import About from "@/app/components/About";
+
 import AboutUsSection from "@/app/components/About";
 import Footer from "@/app/components/Footer";
-import RimCard from "@/app/components/RimCard";
+
 import RimSection from "@/app/components/RimCard";
 
 async function fetchProducts() {

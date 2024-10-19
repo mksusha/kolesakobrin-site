@@ -64,6 +64,7 @@ const OrderForm = ({ tire, onClose }: OrderFormProps) => {
             }
         } catch (error) {
                         alert('Произошла ошибка при отправке заказа.');
+            console.error('', error);
         } finally {
             setIsSubmitting(false);
         }

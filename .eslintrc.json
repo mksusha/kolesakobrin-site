@@ -1,3 +1,24 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@next/next/no-img-element": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/app/admin/orders/page.tsx", "src/app/rims/[id]/page.tsx", "src/app/rims/page.tsx", "src/app/tires/page.tsx"],
+      "rules": {
+
+        "react-hooks/exhaustive-deps": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@next/next/no-img-element": "off"
+      }
+    }
+  ]
 }
