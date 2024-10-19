@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "normalize.css";
 
 body {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
@@ -145,10 +146,3 @@ header img {
   width: 200px;
 
 }
-form {
-  margin: 0;
-  padding: 0;
-  border: none;
-  background: none;
-}
-
