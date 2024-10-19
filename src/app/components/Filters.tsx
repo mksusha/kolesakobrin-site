@@ -4,20 +4,21 @@ interface FiltersProps {
     onFilterChange: (filters: { width: string | null, height: string | null, season: string | null, manufacturer: string | null }) => void;
 }
 
-const Filters = ({ }: FiltersProps) => {
+const Filters = ({ onFilterChange }: FiltersProps) => {
     const [width, setWidth] = useState<string | null>(null);
     const [height, setHeight] = useState<string | null>(null);
     const [season, setSeason] = useState<string | null>(null);
     const [manufacturer, setManufacturer] = useState<string | null>(null);
 
         const handleApplyFilters = () => {
-            };
+        console.log({ width, height, season, manufacturer });         onFilterChange({ width, height, season, manufacturer });
+    };
 
     return (
         <div className="bg-white p-6 rounded-2xl shadow-lg mb-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-                {}
+                {/* Ширина */}
                 <div>
                     <label htmlFor="width" className="block text-sm font-medium text-gray-600">Ширина</label>
                     <select
@@ -58,7 +59,7 @@ const Filters = ({ }: FiltersProps) => {
                     </select>
                 </div>
 
-                {}
+                {/* Высота */}
                 <div>
                     <label htmlFor="height" className="block text-sm font-medium text-gray-600">Высота</label>
                     <select
@@ -86,7 +87,7 @@ const Filters = ({ }: FiltersProps) => {
                     </select>
                 </div>
 
-                {}
+                {/* Сезон */}
                 <div>
                     <label htmlFor="season" className="block text-sm font-medium text-gray-600">Сезон</label>
                     <select
@@ -104,7 +105,7 @@ const Filters = ({ }: FiltersProps) => {
                     </select>
                 </div>
 
-                {}
+                {/* Фильтр по бренду */}
                 <div>
                     <label htmlFor="manufacturer" className="block text-sm font-medium text-gray-600">Бренд</label>
                     <select
@@ -153,7 +154,7 @@ const Filters = ({ }: FiltersProps) => {
                 </div>
             </div>
 
-            {}
+            {/* Кнопка Применить фильтры */}
             <div className="mt-6 flex justify-center">
                 <button
                     className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform "
