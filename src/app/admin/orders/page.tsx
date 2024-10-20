@@ -27,12 +27,12 @@ const OrdersPage = () => {
     const [filterProcessed, setFilterProcessed] = useState<'all' | 'processed' | 'unprocessed'>('all');
     const [filterType, setFilterType] = useState<'all' | 'tire' | 'rim'>('all');
     const router = useRouter();
-    const [isClient, setIsClient] = useState(false); // Флаг для проверки клиентской части
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-        // Эта проверка всегда срабатывает при рендере
+
         if (typeof window !== 'undefined') {
-            setIsClient(true); // Мы на клиенте
+            setIsClient(true);
             const isAdmin = localStorage.getItem('isAdmin');
             if (!isAdmin || isAdmin !== 'true') {
                 router.push('/admin/login');
@@ -80,7 +80,7 @@ const OrdersPage = () => {
     };
 
     if (!isClient) {
-        return null; // Пока не определили, что мы на клиенте, ничего не рендерим
+        return null;
     }
 
     return (

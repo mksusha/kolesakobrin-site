@@ -18,7 +18,6 @@ const Filters = ({ onFilterChange }: FiltersProps) => {
         <div className="bg-white p-6 rounded-2xl shadow-lg mb-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-                {/* Ширина */}
                 <div>
                     <label htmlFor="width" className="block text-sm font-medium text-gray-600">Ширина</label>
                     <select
@@ -59,7 +58,6 @@ const Filters = ({ onFilterChange }: FiltersProps) => {
                     </select>
                 </div>
 
-                {/* Высота */}
                 <div>
                     <label htmlFor="height" className="block text-sm font-medium text-gray-600">Высота</label>
                     <select
@@ -87,7 +85,6 @@ const Filters = ({ onFilterChange }: FiltersProps) => {
                     </select>
                 </div>
 
-                {/* Сезон */}
                 <div>
                     <label htmlFor="season" className="block text-sm font-medium text-gray-600">Сезон</label>
                     <select
@@ -105,7 +102,7 @@ const Filters = ({ onFilterChange }: FiltersProps) => {
                     </select>
                 </div>
 
-                {/* Фильтр по бренду */}
+
                 <div>
                     <label htmlFor="manufacturer" className="block text-sm font-medium text-gray-600">Бренд</label>
                     <select
@@ -154,7 +151,7 @@ const Filters = ({ onFilterChange }: FiltersProps) => {
                 </div>
             </div>
 
-            {/* Кнопка Применить фильтры */}
+
             <div className="mt-6 flex justify-center">
                 <button
                     className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform "
